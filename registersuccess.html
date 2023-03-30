@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
-<body>
+    <script>
+        function onNo() {
+            try {
+                JSInterface.onNo();
+            } catch (error) {
+                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.callbackHandler) {
+                    window.webkit.messageHandlers.callbackHandler.postMessage({
+                        "message": "onNo"
+                    });
+                }
+            }
+        }
 
+        function onYes() {
+            try {
+                JSInterface.onYes();
+            } catch (error) {
+                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.callbackHandler) {
+                    window.webkit.messageHandlers.callbackHandler.postMessage({
+                        "message": "onYes"
+                    });
+                }
+            }
+        }
+    </script>
+<body>
 <h1>Thank you for the registration.</h1>
 Do you want to view our website?
 <br>
 <br>
 <br>
-<button type="button" style="height:50px;width:150px;margin-right:20px" onclick="JSInterface.onNo();">No</button>
-<button type="button" style="height:50px;width:150px;" onclick="JSInterface.onYes();">Yes</button>
+<button type="button" style="height:50px;width:150px;margin-right:20px" onclick="onNo();">No</button>
+<button type="button" style="height:50px;width:150px;" onclick="onYes();">Yes</button>
  
 </body>
 </html>
-

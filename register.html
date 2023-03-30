@@ -2,20 +2,26 @@
 <html>
     <script>
         function onNext() {
-            JSInterface.onNext();
-            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.callbackHandler) {
-                window.webkit.messageHandlers.callbackHandler.postMessage({
-                    "message": "onNext"
-                });
+            try {
+                JSInterface.onNext();
+            } catch (error) {
+                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.callbackHandler) {
+                    window.webkit.messageHandlers.callbackHandler.postMessage({
+                        "message": "onNext"
+                    });
+                }
             }
         }
-​
+
         function onBack() {
-            JSInterface.onBack();
-            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.callbackHandler) {
-                window.webkit.messageHandlers.callbackHandler.postMessage({
-                    "message": "onBack"
-                });
+            try {
+                JSInterface.onBack();
+            } catch (error) {
+                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.callbackHandler) {
+                    window.webkit.messageHandlers.callbackHandler.postMessage({
+                        "message": "onBack"
+                    });
+                }
             }
         }
     </script>
