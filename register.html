@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html>
+    <script>
+        function onNext() {
+            JSInterface.onNext();
+            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.callbackHandler) {
+                window.webkit.messageHandlers.callbackHandler.postMessage({
+                    "message": "onNext"
+                });
+            }
+        }
+​
+        function onBack() {
+            JSInterface.onBack();
+            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.callbackHandler) {
+                window.webkit.messageHandlers.callbackHandler.postMessage({
+                    "message": "onBack"
+                });
+            }
+        }
+    </script>
 <body>
-
 <h1>Register</h1>
 Do you want to register as a membership? 
 <br>
 Click Next to register. If you want to back to app, click Cancel.
 <br>
 <br>
-<button type="button" style="height:50px;width:150px;margin-right:20px" onclick="JSInterface.onBack();">Cancel</button>
-<button type="button" style="height:50px;width:150px;" onclick="JSInterface.onNext();">Next</button>
+<button type="button" style="height:50px;width:150px;margin-right:20px" onclick="onBack();">Cancel</button>
+<button type="button" style="height:50px;width:150px;" onclick="onNext();">Next</button>
  
 </body>
 </html>
-
